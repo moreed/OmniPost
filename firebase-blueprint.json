@@ -1,0 +1,70 @@
+{
+  "entities": {
+    "AdminProfile": {
+      "title": "Admin Profile",
+      "description": "Administrator account record and roles",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "maxLength": 128
+        },
+        "role": {
+          "type": "string",
+          "enum": ["admin", "superadmin"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["email", "role"]
+    },
+    "MediaAsset": {
+      "title": "Media Asset",
+      "description": "Metadata for videos and images hosted on Cloudflare R2",
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "mediaType": {
+          "type": "string",
+          "enum": ["video", "image"]
+        },
+        "url": {
+          "type": "string",
+          "maxLength": 1024
+        },
+        "r2Key": {
+          "type": "string",
+          "maxLength": 256
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["assetId", "mediaType", "url"]
+    }
+  },
+  "firestore": {
+    "/admins/{adminId}": {
+      "schema": "AdminProfile",
+      "description": "Admin registry allowing system access control"
+    },
+    "/media_assets/{assetId}": {
+      "schema": "MediaAsset",
+      "description": "Rendered 4K videos and high-res cover art hosted on Cloudflare R2"
+    }
+  }
+}

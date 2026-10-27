@@ -1,0 +1,516 @@
+# FINAL MASTER PROMPT — Cross-Platform Social Media Publishing & Content Automation Platform
+
+**Operating Mode: PLAN MODE ONLY — DO NOT IMPLEMENT UNTIL I EXPLICITLY APPROVE THE PLAN**
+
+Act as a senior software architect, full-stack engineer, AI integration specialist, automation engineer, database architect, cybersecurity specialist, and professional social media publishing systems designer with extensive production experience.
+
+Your task is to inspect the existing project, assess the available tools and integrations, and produce a complete, technically realistic implementation plan for a reliable **Cross-Platform Social Media Publishing & Content Automation Web App**.
+
+The platform will manage content for Facebook, Instagram, TikTok, and YouTube, using my existing Aura432Hz content calendar. It must prioritize reliability, controlled AI usage, security, accurate scheduling, administrative approval, and prevention of duplicate content.
+
+This is a real publishing workflow, not merely a visual prototype. Do not claim a feature works unless its implementation and operation can be verified.
+
+---
+
+## 1. Non-Negotiable Operating Rules
+
+1. **Remain in Plan Mode.** Do not modify source code, create files, execute database migrations, deploy services, connect accounts, activate scheduled jobs, or initiate paid services during planning.
+2. Inspect the existing project and its current architecture before recommending changes. Reuse suitable existing components instead of rebuilding unnecessarily.
+3. Present a detailed, implementation-ready plan, including the architecture, required files, database design, integrations, security controls, costs, dependencies, risks, and testing strategy.
+4. Clearly distinguish between:
+   - Already implemented and verified features.
+   - Features that exist but require modification.
+   - Proposed features not yet implemented.
+   - Features that depend on external approval, API access, paid services, or platform limitations.
+5. **Stop after presenting the plan and wait for my explicit approval before implementation.** Do not interpret silence, a general request for improvement, or approval of one milestone as permission to implement the entire project.
+6. If a significant technical decision, paid service, new subscription, architecture change, or additional scope becomes necessary, explain it and obtain my approval before proceeding.
+7. Never fabricate API access, available quotas, successful tests, deployment status, platform capabilities, or costs.
+8. Preserve the original spreadsheet and all existing source content. Never overwrite or discard original data during import, editing, generation, or publishing.
+9. Prioritize the simplest reliable and cost-conscious architecture that meets the requirements. Avoid unnecessary complexity, services, and recurring expenses.
+
+## 2. Project Objective
+
+Build a secure, administrator-controlled web application that can:
+
+- Import and validate my existing Excel content calendar.
+- Organize all content into individual daily content packages.
+- Display the complete 30-day campaign in a calendar and dashboard.
+- Generate only the video required for the current production day.
+- Prepare platform-specific publishing content.
+- Let me review, edit, regenerate, approve, or reject each daily package.
+- Publish approved content to selected connected social media accounts through supported official APIs.
+- Track the publishing result independently for each platform.
+- Run scheduled jobs through a persistent backend, without requiring my browser or computer to remain open.
+- Monitor usage, estimated costs, failures, approvals, and upcoming jobs.
+- Resume safely after service interruptions without generating duplicate videos or publishing duplicate posts.
+
+The platform must be designed around **controlled daily production, not bulk generation of all 30 videos**.
+
+## 3. Inspect and Preserve the Existing Excel Workbook
+
+Locate and inspect the uploaded workbook:
+
+`Aura432Hz_30_video_master_content_calendar_.xlsx`
+
+The workbook contains a worksheet named `30 Video Posts`, with 30 daily content entries and 29 columns.
+
+The existing data includes, among other fields:
+
+- Video number, date, day, campaign phase, and content focus.
+- Video title and duration.
+- Opening hook and voiceover script.
+- Spoken URL pronunciation.
+- Platform posting times for Instagram, YouTube Shorts, Facebook, and TikTok.
+- Regional time references for Egypt, UK, US Eastern, and US Pacific.
+- Master caption, YouTube Shorts title, CTA, and hashtags.
+- Boost status and rationale.
+- Full Gemini generation prompt.
+- Visual, color, voice, and cinematic guidelines.
+- Platform publishing notes.
+- Safety and compliance notes.
+
+Before implementation, verify the actual workbook structure and map every original column to the proposed data model. Do not assume the spreadsheet is unchanged if the actual file differs from this description.
+
+### Import requirements
+
+- Preserve all 30 entries, original dates, scripts, captions, prompts, hashtags, URLs, timing information, and campaign instructions.
+- Validate required fields, date formats, duplicate video numbers, missing values, and inconsistent time zones.
+- Show an import preview and validation report before finalizing the import.
+- Report missing or invalid fields instead of silently guessing.
+- Preserve original source values separately from edited values.
+- Support safe re-importing without creating duplicate daily packages.
+- Record the source filename, import time, and validation results.
+- Allow an administrator to review and resolve import errors.
+
+The master caption is the source of truth. Generate separate editable platform-specific caption variants only where appropriate. Do not replace the master caption automatically.
+
+There is no confirmed dedicated first-comment field in the described workbook. Therefore, do not invent first comments or treat hashtags, captions, or CTAs as first comments. Add a separate editable first-comment field only if needed, and publish it only where the official platform integration supports it.
+
+## 4. Strict Two-Phase Workflow
+
+### Phase 1 — Import, Analyze, and Prepare
+
+This phase must prepare the campaign without generating videos or publishing posts.
+
+Required sequence:
+
+1. Inspect the workbook and validate its contents.
+2. Import the 30 daily entries.
+3. Match every field to the correct day and content package.
+4. Organize the entries into a 30-day calendar.
+5. Display a daily package containing all relevant source content.
+6. Preserve the original generation prompt and creative guidelines for each day.
+7. Identify missing assets, incomplete content, invalid schedules, and unsupported platform requirements.
+8. Allow the administrator to configure production time, publishing schedules, selected platforms, usage limits, and notification preferences.
+9. Provide the option to connect and verify supported social media accounts.
+10. Display an implementation and readiness report.
+
+**Strict restrictions for Phase 1:**
+
+- Do not generate any video.
+- Do not generate replacement content in bulk.
+- Do not publish or schedule posts externally.
+- Do not automatically start Phase 2.
+- Do not activate recurring production jobs without explicit approval.
+- Do not incur generation or publishing costs.
+
+Phase 1 is complete only when the imported data has been validated and the administrator can inspect the daily packages and configuration.
+
+### Phase 2 — Daily Production, Review, Approval, and Publishing
+
+Process only the content package associated with the current production day.
+
+The standard workflow is:
+
+1. Identify the correct daily package using the configured production date and time zone.
+2. Verify that the package is valid and that the correct source prompt, script, visual guidelines, and publishing schedule are available.
+3. Check whether a video asset or active generation job already exists for that package.
+4. Check configured usage limits, available service access, and estimated generation cost where this information is available.
+5. Generate only the required day's video.
+6. Save the generated asset and associate it with the correct daily package.
+7. Prepare the platform-specific captions, titles, descriptions, hashtags, CTAs, and other supported metadata.
+8. Display the video and complete publishing package in an administrator review screen.
+9. Allow the administrator to edit content, request regeneration, approve, or reject the package.
+10. Publish only after explicit approval.
+11. Publish independently to each selected and authorized platform account.
+12. Record each platform's result, including its status, post URL or ID when available, timestamp, and any error.
+13. Display a daily completion report.
+14. Wait until the next configured production day or a deliberate administrator command.
+
+Do not generate the next day's video early. Do not generate all 30 videos at once. Do not continue automatically if approval is pending or rejected.
+
+If the daily job fails, reaches a usage limit, encounters an expired account connection, or cannot verify its result, pause the affected operation and clearly explain what needs attention.
+
+## 5. AI Generation and Usage Protection
+
+I want to control costs and avoid exhausting available AI usage limits.
+
+Before selecting the implementation approach, verify the actual capabilities and access available through the existing Google AI Studio project and any relevant Gemini services.
+
+Do not assume that a Gemini Pro subscription automatically includes unlimited API usage, video generation, Veo access, production API quotas, or unrestricted automated processing.
+
+Clearly distinguish between:
+
+- Consumer subscription benefits.
+- Gemini API access and API quotas.
+- Text and reasoning model usage.
+- Video generation model/service usage.
+- Image generation usage.
+- Hosting, database, storage, bandwidth, scheduler, and notification costs.
+
+Where current access, quotas, prices, or availability cannot be verified, label them as unconfirmed and identify the official documentation or account setting that must be checked.
+
+### Required controls
+
+- Default to one video-generation job per production day.
+- Default generation concurrency to one.
+- Allow an administrator to configure a maximum number of generation jobs per day.
+- Provide configurable daily and monthly usage or spending limits wherever supported.
+- Provide warning thresholds and a clear usage dashboard.
+- Stop automatically when a configured hard limit is reached.
+- Do not bypass limits by switching models, accounts, or services without approval.
+- Do not silently fall back to a paid model or provider.
+- Do not regenerate a video merely because a browser refreshes, a scheduled job runs twice, or a network request times out.
+- Check for existing completed assets and active jobs before creating a new generation job.
+- Preserve previous generated assets when regenerating.
+- Default to one generation attempt. Require administrator action for further attempts unless a safe retry policy has been explicitly approved.
+- Display the expected cost before a chargeable action when reliable pricing information is available.
+- Record actual charges only when confirmed by the relevant provider; otherwise label figures as estimates.
+- Never claim that an estimate is a confirmed bill.
+
+If a generation request times out, determine whether the provider accepted or completed the request before retrying. If the outcome cannot be established, mark the job as requiring reconciliation and request administrator review.
+
+## 6. Persistent Scheduling and Reliable Job Processing
+
+The system must operate independently of the browser session.
+
+Use a supported backend scheduler, scheduled function, or equivalent persistent service. Browser timers, an open tab, local-only scripts, or the administrator's computer must not be required for normal scheduled production.
+
+Before implementation, verify that the selected hosting environment supports the required scheduling frequency, execution duration, storage, authentication, and background processing.
+
+If the existing hosting platform cannot support the workflow reliably, explain the limitation and propose the simplest suitable alternative, including its costs and setup requirements, before implementation.
+
+### Reliability requirements
+
+- Store scheduled jobs and their states persistently.
+- Use unique job identifiers and database-backed locking or equivalent concurrency controls.
+- Prevent duplicate jobs from repeated clicks, scheduler retries, service restarts, or concurrent requests.
+- Persist each job's current stage, attempt count, timestamps, and error details.
+- Detect missed or overdue jobs.
+- Recover safely after a restart or temporary outage.
+- Do not replay a completed operation automatically.
+- Reconcile uncertain generation and publishing outcomes before retrying.
+- Require administrator review when safe recovery cannot be guaranteed.
+- Keep production jobs separate from publishing jobs.
+- Provide a visible queue, next-run time, last-run result, and failure details.
+
+A restart must not reset approval status, bypass usage limits, lose job history, or create duplicate external posts.
+
+## 7. Administrator Review and Approval
+
+Create an administrator review interface that presents the complete daily publishing package.
+
+The administrator should be able to:
+
+- Preview the generated video.
+- Review the original script and master caption.
+- Edit platform-specific captions, titles, descriptions, hashtags, and CTAs.
+- Review scheduled publishing times and target accounts.
+- Edit metadata and request a new video generation when necessary.
+- Approve the package, reject it, or leave it pending.
+- View the estimated cost and relevant usage impact of regeneration.
+- Inspect the final content version that will be published.
+
+### Approval integrity
+
+Approval must be associated with the exact content version, video asset, publishing metadata, and target accounts that were reviewed.
+
+If a material change occurs after approval—including a video replacement, caption change, target-account change, or publishing-time change—require reapproval where that change affects the approved publishing package.
+
+Immediately before publishing, verify that the approval remains valid and that the content has not changed.
+
+No administrator approval means no publishing. A rejected or pending package must remain unpublished.
+
+If approval is delayed beyond the planned publishing time, hold the package and ask the administrator to choose what to do. Never silently publish late or change the schedule without authorization.
+
+## 8. Official Social Media Integrations
+
+Support Facebook, Instagram, TikTok, and YouTube through their official, currently supported APIs and authorization mechanisms.
+
+Inspect each platform's actual capabilities before designing the integration.
+
+For each platform, verify:
+
+- OAuth or equivalent authorization requirements.
+- Supported account types and permissions.
+- Video upload and publishing requirements.
+- Supported video formats, file sizes, duration limits, and metadata.
+- Scheduling capabilities and any platform-specific restrictions.
+- Rate limits, review requirements, quotas, and account eligibility.
+- First-comment support, if available.
+- Required developer applications, approval processes, or additional permissions.
+
+Do not assume that all four platforms support identical publishing features.
+
+Use official APIs only. Do not use unofficial endpoints, scraping, credential sharing, browser automation to bypass API restrictions, or other prohibited methods.
+
+### Account security
+
+- Never ask the administrator to provide social media passwords or session cookies.
+- Keep access tokens and refresh tokens on the backend.
+- Encrypt sensitive credentials at rest using suitable managed secrets or encryption facilities.
+- Use least-privilege permissions.
+- Validate authorization server-side.
+- Handle token expiration and revocation safely.
+- Provide secure account disconnection and reconnection.
+- Do not expose tokens or sensitive authorization data in frontend code, logs, error messages, or exported reports.
+
+If a platform does not support a requested feature, explain the limitation and offer a safe manual fallback. Never claim a post was published when the platform has not confirmed success.
+
+## 9. Publishing Status and Duplicate Prevention
+
+Track every platform publishing operation separately.
+
+Use clear states such as:
+
+- Not prepared.
+- Ready for review.
+- Awaiting approval.
+- Approved.
+- Scheduled internally.
+- Publishing.
+- Published.
+- Failed.
+- Outcome unknown — reconciliation required.
+- Cancelled.
+- Held for administrator action.
+
+These labels may be adjusted to reflect the actual implementation, but their meanings must remain clear.
+
+Maintain a separate publishing record for each daily package and target account.
+
+If Facebook succeeds but TikTok fails, do not republish the successful Facebook post while retrying TikTok.
+
+If a request times out after submission, do not assume it failed. Reconcile the result using available official platform data before attempting another submission.
+
+Store platform post IDs, URLs, timestamps, and error details where supported. Preserve an audit trail of administrative edits, approvals, retries, and publishing actions.
+
+## 10. Accurate Scheduling and Time Zones
+
+The original calendar includes Egypt local time and regional references for the UK and US.
+
+Preserve these values and their intended meaning. Do not overwrite the source schedule simply to make it fit the backend's time zone.
+
+Use an authoritative time-zone database and IANA time-zone identifiers. Default the production scheduler to `Africa/Cairo` unless I explicitly configure another production time zone.
+
+- Store timestamps in UTC alongside the intended time-zone identifier.
+- Convert times for display using the appropriate time-zone rules.
+- Handle daylight-saving changes correctly for regional publishing schedules.
+- Distinguish video production time from each platform's publishing time.
+- Preserve the source schedule and show any proposed changes before applying them.
+- Never silently shift a publishing time because of a time-zone conversion.
+- Flag ambiguous dates, missing time zones, and conflicting schedules for review.
+- Hold overdue content until the administrator decides whether to publish, reschedule, or skip it.
+
+If the source workbook uses fixed regional clock times, preserve the intended clock times unless the administrator approves a different rule.
+
+## 11. Database, Media Storage, and Data Integrity
+
+Propose an appropriate persistent database and media-storage design based on the existing project and supported hosting environment.
+
+The data model should cover, at minimum:
+
+- Imported workbook metadata and source records.
+- Daily content packages.
+- Original content and edited versions.
+- Generated video assets and storage references.
+- Approval records and approved content versions.
+- Connected social media accounts and secure credential references.
+- Generation jobs and provider request identifiers.
+- Per-platform publishing jobs and external post identifiers.
+- Scheduler executions and recovery records.
+- Usage, cost estimates, and confirmed cost records where available.
+- Errors, notifications, and audit logs.
+
+Store large media files in appropriate object storage rather than unnecessarily placing them in database rows.
+
+Define retention, backup, recovery, access-control, and deletion policies. Avoid destructive migrations and provide a rollback strategy.
+
+The original Excel workbook must remain available as the source record even after its content is edited or published.
+
+## 12. Dashboard and Administrator Experience
+
+Design a professional, clear, responsive dashboard suitable for a non-expert administrator.
+
+Include:
+
+- Campaign overview and 30-day calendar.
+- Today's production package and current workflow stage.
+- Next scheduled production run.
+- Generation queue and job history.
+- Video preview and editing interface.
+- Approval queue.
+- Connected-account status.
+- Publishing status by platform.
+- Usage and estimated cost dashboard.
+- Daily and monthly generation counts.
+- Failed, overdue, and uncertain jobs.
+- Expired or revoked account connections.
+- Audit history and operational alerts.
+
+Use clear labels, concise explanations, and actionable error messages. Make destructive actions and chargeable operations explicit.
+
+The interface must never make a prototype, simulated response, or unverified result look like a successfully completed real operation.
+
+## 13. Authentication, Security, and Privacy
+
+Plan for a secure administrator-only application.
+
+Include:
+
+- Secure authentication and server-side authorization checks.
+- Protection of administrative endpoints.
+- Secure session handling.
+- Input validation and safe spreadsheet parsing.
+- Protection against unauthorized publishing and accidental repeated actions.
+- Rate limiting where appropriate.
+- Secure secret management and encrypted credential storage.
+- Logs that exclude passwords, access tokens, and other sensitive values.
+- Separation of development, testing, and production environments.
+- Appropriate dependency management and security checks.
+- A recovery procedure for compromised or revoked credentials.
+
+Do not expose privileged functions merely because a button is hidden in the user interface.
+
+## 14. Cost, Hosting, and External Dependencies
+
+Before implementation, provide a transparent cost and dependency assessment.
+
+Identify the requirements and potential charges for:
+
+- Google AI Studio and the selected Gemini services.
+- Video-generation providers or models.
+- Any image-generation service.
+- Database and backend execution.
+- Persistent scheduling.
+- Media storage and bandwidth.
+- Domain, hosting, and deployment.
+- Social platform developer applications and API access.
+- Notifications and other optional integrations.
+
+Separate mandatory costs from optional costs. Identify free-tier restrictions, rate limits, approval requirements, and possible usage-based charges.
+
+Do not promise that the entire application will be free or that a consumer AI subscription covers all production API usage.
+
+If the chosen solution requires a paid service, a billing account, or a quota increase, stop and obtain approval before enabling it.
+
+## 15. Notifications and Failure Handling
+
+Notifications may be proposed for:
+
+- A daily video being ready for review.
+- Approval or rejection.
+- A failed generation job.
+- A failed or uncertain publishing result.
+- An expired account connection.
+- An approaching usage limit.
+- A missed production run.
+- A completed publishing cycle.
+
+Identify any additional service, permission, or cost required for each notification channel before enabling it.
+
+The application must never silently ignore a failed operation. It should explain the problem, preserve completed work, and provide a safe next action.
+
+## 16. Required Acceptance Tests
+
+Include a concrete test plan for the following scenarios before implementation is considered complete:
+
+1. Import the workbook without generating or publishing anything.
+2. Confirm that all 30 daily records and mapped source fields are preserved.
+3. Process only the correct day's package.
+4. Verify that closing the browser does not interrupt scheduled backend work.
+5. Confirm that repeated scheduler triggers cannot create duplicate generation jobs.
+6. Confirm that existing generated assets are reused unless regeneration is explicitly requested.
+7. Confirm that daily and monthly hard limits stop generation.
+8. Confirm that an ambiguous generation timeout does not trigger an unsafe duplicate retry.
+9. Confirm that no post is published without valid administrator approval.
+10. Confirm that material edits invalidate approval and require reapproval.
+11. Confirm that publishing results are recorded independently for each platform.
+12. Confirm that a failed platform does not cause successful posts to be published again.
+13. Confirm safe recovery after a backend restart.
+14. Confirm correct handling of expired, revoked, and insufficient account permissions.
+15. Confirm that overdue content is held for administrator review.
+16. Confirm time-zone conversions and daylight-saving behavior.
+17. Confirm that secrets do not appear in frontend code or logs.
+18. Confirm that estimated costs are distinguished from actual confirmed charges.
+19. Confirm that unsupported platform capabilities are disclosed and handled safely.
+20. Confirm that no prototype or simulated result is represented as a real external operation.
+
+Use test content and test accounts wherever possible. Do not perform live public publishing or incur unapproved generation costs during testing.
+
+## 17. Implementation Milestones
+
+Organize the eventual implementation into two controlled milestones.
+
+### Milestone 1 — Foundation and Campaign Preparation
+
+- Inspect and document the existing architecture.
+- Validate and import the Excel workbook.
+- Create daily content packages.
+- Build the 30-day calendar and administrator dashboard.
+- Implement data validation and preservation of source content.
+- Design persistent storage and account-connection setup.
+- Configure time zones and usage-control settings.
+- Validate the Phase 1 workflow without generating or publishing content.
+
+### Milestone 2 — Controlled Daily Automation
+
+- Implement daily video generation.
+- Implement media storage and asset management.
+- Implement platform-specific content preparation.
+- Implement administrator review, editing, and persistent approval.
+- Implement official platform integrations.
+- Implement per-platform publishing and status tracking.
+- Implement persistent scheduling, queue processing, recovery, and duplicate prevention.
+- Implement usage monitoring, cost visibility, and notifications.
+- Run the acceptance tests and document any remaining limitations.
+
+Do not start Milestone 2 merely because Milestone 1 is complete. Obtain my explicit approval before starting each milestone.
+
+## 18. Required Plan Mode Deliverables
+
+Before making any changes, return a structured implementation plan containing:
+
+1. **Existing Project Assessment:** What is already available, what was inspected, and what remains unknown.
+2. **Recommended Architecture:** Frontend, backend, database, storage, scheduler, AI services, and social integrations.
+3. **Workflow Diagram:** Phase 1 preparation and Phase 2 daily production-to-publishing flow.
+4. **Workbook Mapping:** Every original column and its destination in the proposed data model.
+5. **Database Design:** Proposed tables or collections, relationships, uniqueness constraints, and state transitions.
+6. **File-Level Change Plan:** Which existing files would change and which new files would be created, with the purpose of each.
+7. **API and Access Requirements:** Required permissions, developer approvals, quotas, and verified platform limitations.
+8. **AI Usage and Cost Controls:** Generation limits, retries, spending safeguards, and cost assumptions.
+9. **Hosting and Scheduling Plan:** How daily jobs will run when the browser is closed, including recovery behavior.
+10. **Security and Privacy Plan:** Authentication, credentials, authorization, secrets, and audit logging.
+11. **Acceptance Test Matrix:** Test case, expected result, and how success will be verified.
+12. **Risks and Dependencies:** Unconfirmed capabilities, technical limitations, and required external actions.
+13. **Estimated Costs:** One-time setup, recurring charges, usage-based costs, and free-tier limitations, clearly labeled as estimates where appropriate.
+14. **Milestone Plan:** Scope, deliverables, dependencies, and approval gates for each milestone.
+15. **Go/No-Go Checklist:** What must be verified before implementation and what requires my decision.
+
+Use official, current documentation when verifying platform and provider capabilities. Cite the documentation or provide its exact links in the plan. If a capability cannot be verified, mark it as unconfirmed rather than making assumptions.
+
+## 19. Final Mandatory Instruction — Scope Control and Approval Gate
+
+**DO NOT WRITE OR MODIFY CODE YET. DO NOT DEPLOY. DO NOT CONNECT LIVE ACCOUNTS. DO NOT START GENERATION OR PUBLISHING JOBS. DO NOT ACTIVATE PAID SERVICES.**
+
+First, inspect the existing project and the workbook, verify the available capabilities and dependencies, and deliver the complete implementation plan described above.
+
+Clearly identify every assumption, limitation, external dependency, potential cost, and unresolved decision.
+
+Then stop and wait for my explicit approval.
+
+After I approve, implement only the approved milestone and scope. Preserve the original workbook and all existing working functionality. Before making any material change to the approved architecture, scope, cost, permissions, or external services, explain the change and obtain my approval again.
+
+At every stage, report what has actually been completed, what has been tested, what remains incomplete, and what requires my action. Never report a feature as complete until its behavior has been implemented and verified.
+
+**Success means a reliable, secure, cost-controlled, day-by-day publishing platform with persistent scheduling, accurate content mapping, explicit administrator approval, and no avoidable duplicate generation or publishing—not simply an attractive dashboard or a working demonstration.**

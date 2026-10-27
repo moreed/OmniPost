@@ -1,0 +1,75 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net - Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Handshake connection test path
+    match /test/{testId} {
+      allow read: if true;
+    }
+
+    // Global hardened primitives
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        request.auth.token.email == 'moreed.raouf@gmail.com'
+      );
+    }
+
+    function isValidAdminProfile(data) {
+      return data.keys().hasAll(['email', 'role']) &&
+        data.keys().hasOnly(['email', 'role', 'createdAt', 'updatedAt']) &&
+        data.email is string && data.email.size() > 3 && data.email.size() <= 128 &&
+        data.role in ['admin', 'superadmin'];
+    }
+
+    function isValidMediaAsset(data) {
+      return data.keys().hasAll(['assetId', 'mediaType', 'url']) &&
+        data.keys().hasOnly(['assetId', 'title', 'mediaType', 'url', 'r2Key', 'createdAt']) &&
+        data.assetId is string && data.assetId.size() > 0 && data.assetId.size() <= 64 &&
+        data.mediaType in ['video', 'image'] &&
+        data.url is string && data.url.size() > 5 && data.url.size() <= 1024 &&
+        (!('r2Key' in data) || (data.r2Key is string && data.r2Key.size() <= 256)) &&
+        (!('title' in data) || (data.title is string && data.title.size() <= 256));
+    }
+
+    // Administrators collection
+    match /admins/{adminId} {
+      allow get: if isSignedIn() && (request.auth.uid == adminId || isAdmin());
+      allow list: if isAdmin();
+      allow create: if isAdmin() && isValidId(adminId) && isValidAdminProfile(incoming());
+      allow update: if isAdmin() && isValidId(adminId) && isValidAdminProfile(incoming()) &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['email', 'role', 'updatedAt']);
+      allow delete: if isAdmin();
+    }
+
+    // Media Assets collection (Cloudflare R2 metadata)
+    match /media_assets/{assetId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if isSignedIn() && isValidId(assetId) && isValidMediaAsset(incoming());
+      allow update: if isAdmin() && isValidId(assetId) && isValidMediaAsset(incoming());
+      allow delete: if isAdmin() && isValidId(assetId);
+    }
+  }
+}

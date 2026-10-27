@@ -1,0 +1,6 @@
+{
+  "name": "OmniPost - Social Media Cross-Posting & Daily Video Automation Studio",
+  "description": "Import Excel content calendars, auto-generate daily videos starting Nov 1, and schedule multi-platform cross-posting across TikTok, Instagram, YouTube, LinkedIn, X, and Facebook.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
